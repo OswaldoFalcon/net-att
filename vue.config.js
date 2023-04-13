@@ -5,7 +5,10 @@ module.exports = defineConfig({
     devServer: {
       proxy: {
         '/tasks': {
-          target: 'http://localhost:3000',
+          target: 'https://employee-atendance-node-production.up.railway.app/',
+          timeout: 6000,
+        secure: false,
+        changeOrigin: true
         },
       },
     },
