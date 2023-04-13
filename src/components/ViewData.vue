@@ -7,7 +7,7 @@ import UploadFile from './UploadFile.vue'
 const employeesData = ref(null)
 
 async function fetchData() {
-  const response = await axios.get("tasks/");
+  const response = await axios.get("https://employee-atendance-node-production.up.railway.app/tasks/");
   employeesData.value = await response.data
 }
 
