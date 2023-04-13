@@ -1,14 +1,15 @@
 <script setup>
 import { ref, watch } from 'vue'
 import axios from "axios";
-import NotHandler from './NotHandler.vue'
+import NotificationHandler from './NotificationHandler.vue'
+import AddDataHandler from './AddDataHandler.vue'
 import UploadFile from './UploadFile.vue'
 const employeesData = ref(null)
-const userID = ref("")
-const userName = ref("")
-const date = ref("")
-const punchIn = ref("")
-const punchOut = ref("")
+// const userID = ref("")
+// const userName = ref("")
+// const date = ref("")
+// const punchIn = ref("")
+// const punchOut = ref("")
 
 
 async function fetchData() {
@@ -16,21 +17,21 @@ async function fetchData() {
   employeesData.value = await response.data
 }
 
-async function addAttendece() {
-  const response = await axios.post("tasks/", {
-    userID: userID.value,
-    userName: userName.value,
-    date: date.value,
-    punchIn: punchIn.value,
-    punchOut: punchOut.value
-  });
-  employeesData.value.push(response.data)
-  userID.value = ""
-  userName.value = ""
-  date.value = ""
-  punchIn.value = ""
-  punchOut.value = ""
-}
+// async function addAttendece() {
+//   const response = await axios.post("tasks/", {
+//     userID: userID.value,
+//     userName: userName.value,
+//     date: date.value,
+//     punchIn: punchIn.value,
+//     punchOut: punchOut.value
+//   });
+//   employeesData.value.push(response.data)
+//   userID.value = ""
+//   userName.value = ""
+//   date.value = ""
+//   punchIn.value = ""
+//   punchOut.value = ""
+// }
 
 async function removeAttendece(employee) {
   await axios.delete("tasks/" + employee._id);
@@ -43,7 +44,8 @@ watch(employeesData, fetchData)
 </script>
 <template>
   <div>
-    <form @submit.prevent="addAttendece">
+    <AddDataHandler typeRequest="Add Employee Attendence" />
+    <!-- <form @submit.prevent="addAttendece">
       <input class="input" v-model="userID" type="text" placeholder="Enter user ID" />
       <br />
       <input class="input" v-model="userName" type="text" placeholder="Enter user name" />
@@ -56,7 +58,7 @@ watch(employeesData, fetchData)
       <input type="time" class="form-control" v-model="punchOut" />
 
       <button>Add Todo</button>
-    </form>
+    </form> -->
     <hr>
     <p v-if="!employeesData">Loading...</p>
     <div v-else>
@@ -65,8 +67,8 @@ watch(employeesData, fetchData)
         <span>User Name: {{ employee.userName }}</span>
         <span>Date: {{ employee.date }}</span>
         <span>Punch In: {{ employee.punchIn }}</span>
-        <span>Punch Out: {{ employee.punchout }}</span>
-        <NotHandler :employee="employeesData[i]" />
+        <span>Punch Out: {{ employee.punchOut }}</span>
+        <NotificationHandler :employee="employeesData[i]" typeRequest="Edit Attendece" />
         <button type="button" class="btn btn-danger" @click="removeAttendece(employeesData[i])">Delete</button>
       </div>
     </div>

@@ -1,9 +1,9 @@
 <script setup>
 import { ref, defineProps, defineEmits } from 'vue'
-import EditData from './editData.vue'
+import AddData from './AddData.vue'
 const isOpen = ref(false)
 const prop  = defineProps({
-  employee: Object
+  typeRequest: String
 })
 defineEmits("close")
 </script>
@@ -11,13 +11,11 @@ defineEmits("close")
 
 <template>
   <div class="root">
-    <button class="btn btn-primary" @click="isOpen = true">Edit</button>
-
+    <button class="btn btn-primary" @click="isOpen = true">{{prop.typeRequest}}</button>
     <teleport to="body">
       <div class="modalFal" v-if="isOpen">
-        <EditData :id="prop.employee._id" :employee="prop.employee" @close="isOpen = false" />
+        <AddData @close="isOpen = false" />
       </div>
-
     </teleport>
   </div>
 </template>
