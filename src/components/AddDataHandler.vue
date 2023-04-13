@@ -2,7 +2,7 @@
 import { ref, defineProps, defineEmits } from 'vue'
 import AddData from './AddData.vue'
 const isOpen = ref(false)
-const prop  = defineProps({
+const prop = defineProps({
   typeRequest: String
 })
 defineEmits("close")
@@ -11,7 +11,7 @@ defineEmits("close")
 
 <template>
   <div class="root">
-    <button class="btn btn-primary" @click="isOpen = true">{{prop.typeRequest}}</button>
+    <button class="btn btn-primary" @click="isOpen = true">{{ prop.typeRequest }}</button>
     <teleport to="body">
       <div class="modalFal" v-if="isOpen">
         <AddData @close="isOpen = false" />
@@ -29,7 +29,7 @@ defineEmits("close")
   position: absolute;
   top: 0;
   left: 0;
-  background-color: Orgba(0, 0, 0, 0.1);
+  background-color: #e9e9e9;
   width: 100%;
   height: 100%;
   display: flex;
