@@ -3,7 +3,7 @@ import { read, utils } from 'xlsx'
 import axios from "axios";
 
 async function addAttendece(id, name, date, inHour, outHour) {
-  await axios.post("tasks/", {
+  await axios.post("https://employee-atendance-node-production.up.railway.app/tasks/", {
     userID: id,
     userName: name,
     date: date,
