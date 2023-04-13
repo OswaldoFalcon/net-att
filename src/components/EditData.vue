@@ -13,7 +13,7 @@ const prop = defineProps({
 defineEmits("close")
 
 async function updateAttendece() {
-  await axios.put("tasks/" + prop.id, {
+  await axios.put("https://employee-atendance-node-production.up.railway.app/tasks/" + prop.id, {
     userID: userID.value,
     userName: userName.value,
     date: date.value,
