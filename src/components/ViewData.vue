@@ -12,7 +12,7 @@ async function fetchData() {
 }
 
 async function removeAttendece(employee) {
-  await axios.delete("tasks/" + employee._id);
+  await axios.delete("https://employee-atendance-node-production.up.railway.app/tasks/" + employee._id);
 }
 
 fetchData()
