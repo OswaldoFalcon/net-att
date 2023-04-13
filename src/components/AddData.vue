@@ -10,7 +10,7 @@ const punchOut = ref("")
 defineEmits("close")
 
 async function addAttendece() {
-  const response = await axios.post("tasks/", {
+  const response = await axios.post("https://employee-atendance-node-production.up.railway.app/tasks/", {
     userID: userID.value,
     userName: userName.value,
     date: date.value,
